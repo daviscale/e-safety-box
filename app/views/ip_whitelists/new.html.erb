@@ -1,0 +1,15 @@
+<h1>Validation Code</h1>
+
+<p>
+Enter the validation code you received.
+</p>
+
+<%= form_tag ip_whitelists_path, :method => :post do %>
+  <div class="field">
+    <%= label_tag :code %><br />
+    <%= text_field_tag :code %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Login" %>
+  </div>
+<% end %>

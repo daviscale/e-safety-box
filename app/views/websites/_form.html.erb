@@ -1,0 +1,76 @@
+<%= form_for @website do |form| %>
+  <% if @website.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@website.errors.count, "error") %> prohibited this website from being saved:</h2>
+      <% @website.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %> 
+    </div>
+  <% end %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :username %><br>
+    <%= form.text_field :username %>
+  </p>
+
+  <p>
+    <%= form.label :password %><br>
+    <%= form.text_field :password %>&nbsp;<input id="generate_password" type="button" value="Generate Password" />
+  </p>
+
+  <p>
+    <%= form.label :notes %><br>
+    <%= form.text_area :notes %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+<script>
+String.prototype.shuffle = function () {
+    var a = this.split(""),
+        n = a.length;
+
+    for(var i = n - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i];
+        a[i] = a[j];
+        a[j] = tmp;
+    }
+    return a.join("");
+}
+
+function fourRandomChars(charset)
+{
+    var text = "";
+
+    for( var i=0; i < 4; i++ )
+        text += charset.charAt(Math.floor(Math.random() * charset.length));
+
+    return text;
+}
+
+var LOWERCASE_LETTERS = "abcdefghijklmnopqrstuvwxyz"
+var UPPERCASE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXZY"
+var SPECIAL_CHARS     = "!@#$%^&*()-=_+"
+var NUMBERS           = "1234567890"   
+
+$("#generate_password").click(function() {
+  var randomLowercase = fourRandomChars(LOWERCASE_LETTERS);
+  var randomUppercase = fourRandomChars(UPPERCASE_LETTERS);
+  var randomSpecialChars = fourRandomChars(SPECIAL_CHARS);
+  var randomNumbers = fourRandomChars(NUMBERS);
+  var combined = randomLowercase + randomUppercase + randomSpecialChars + randomNumbers;
+  var shuffled = combined.shuffle()
+  $("#website_password").val(shuffled);
+});
+
+</script>
+
+

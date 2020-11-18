@@ -1,0 +1,22 @@
+<p>
+  <strong>Name:</strong>
+  <%= @website.name %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @website.username %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @website.password %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @website.notes %>
+</p>
+
+<%= link_to 'Back', websites_path %>
+| <%= link_to 'Edit', edit_website_path(@website) %>
